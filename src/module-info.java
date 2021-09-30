@@ -4,4 +4,5 @@ module JavaFxApplication {
     requires javafx.fxml;
 
     opens sample;
+    opens main.Application;
 }
