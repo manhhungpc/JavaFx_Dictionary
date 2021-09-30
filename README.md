@@ -4,8 +4,8 @@ Code phần đầu tiên (command line) tại: `src/main/Command_line`
 ## Về git
 Để bảo vệ source code, làm theo các bước sau:
 
-B1: Tạo 1 branch mới `git branch -b myname_local`
-(hoặc `git branch myname_local` để đổi sang 1 branch có sẵn)
+B1: Tạo 1 branch mới `git checkout -b myname_local`
+(hoặc `git checkout myname_local` để đổi sang 1 branch có sẵn)
 
 B2: Push lên branch và tạo 1 pull request
 
