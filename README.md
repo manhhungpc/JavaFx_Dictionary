@@ -19,7 +19,9 @@ B2: Hợp nhất branch master trong máy với trên git
 
 `git fectch origin master`
 
-B3: Merge branch master với local của mình
+B3: Pull và merge branch master với local của mình
+
+`git pull`
 
 `git merge myname_local`
 
