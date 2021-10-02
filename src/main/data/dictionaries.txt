@@ -1,0 +1,4 @@
+cat	meo
+dog	cho
+cat and dog	meo va cho
+peswoc	dep trai

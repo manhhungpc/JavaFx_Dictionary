@@ -1,4 +1,4 @@
-package main.Command_line;
+package main.commandline;
 
 import java.util.ArrayList;
 import java.util.List;
