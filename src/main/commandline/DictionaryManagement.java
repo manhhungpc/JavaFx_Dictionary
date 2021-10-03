@@ -1,6 +1,7 @@
 package main.commandline;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 
@@ -31,13 +32,11 @@ public class DictionaryManagement {
 
     /**
      * Insert words from file "dictionaries.txt".
-     * You must change filePath by the path of "dictionaries.txt" in your device.
      * Note: if you want to change data in file, please use Notepad and remember a TAB between target and explain.
      */
     public static void insertFromFile() {
         try {
-            String filePath = "D:\\Java Project\\JavaFx_Dictionary\\src\\main\\data\\dictionaries.txt";
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = new BufferedReader(new FileReader(".\\src\\main\\data\\dictionaries.txt"));
             String line;
             String[] targetAndExplain; // = {target, explain}
 
@@ -73,6 +72,5 @@ public class DictionaryManagement {
         if (!existWord) {
             System.out.println("Word not found!");
         }
-
     }
 }
