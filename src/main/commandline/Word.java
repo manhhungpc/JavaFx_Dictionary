@@ -1,4 +1,4 @@
-package main.Command_line;
+package main.commandline;
 
 public class Word {
     private String word_target;
