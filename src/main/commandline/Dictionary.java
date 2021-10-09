@@ -14,4 +14,9 @@ public class Dictionary {
         words.add(new_word);
     }
 
+//    public List<Word> getArray()
+//    {
+//        return words;
+//    }
+
 }
