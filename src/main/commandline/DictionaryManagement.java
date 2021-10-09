@@ -1,5 +1,6 @@
 package main.commandline;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,10 +15,12 @@ public class DictionaryManagement {
      * Insert from Command Line
      */
     public static void insertFromCommandline() {
+
         Scanner input = new Scanner(System.in);
         System.out.print("Number of words: ");
         int number = input.nextInt();
         input.nextLine();
+
 
         for (int i = 1; i <= number; i++) {
             System.out.println("No " + i);
@@ -73,7 +76,6 @@ public class DictionaryManagement {
             System.out.println("Word not found!");
         }
     }
-
 
     public void addWord() {
         Word newWord = new Word();
@@ -155,3 +157,4 @@ public class DictionaryManagement {
         }
     }
 }
+

@@ -13,8 +13,10 @@ public class Dictionary {
     public static void addNewWord(Word new_word) {
         words.add(new_word);
     }
+
 //    public List<Word> getArray()
 //    {
 //        return words;
 //    }
+
 }

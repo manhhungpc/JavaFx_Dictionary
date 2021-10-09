@@ -16,7 +16,6 @@ public class DictionaryCommandLine {
 
     /**
      * Print one word on Command Line.
-     *
      * @param number  word's number in Dictionary.
      * @param target  word's target.
      * @param explain word's explain.
@@ -33,6 +32,7 @@ public class DictionaryCommandLine {
         showWord("No", "English", "Vietnamese");
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             showWord(Integer.toString(i + 1), Dictionary.getWords().get(i).getWord_target(), Dictionary.getWords().get(i).getWord_explain());
+
         }
     }
 
@@ -64,3 +64,4 @@ public class DictionaryCommandLine {
         }
     }
 }
+

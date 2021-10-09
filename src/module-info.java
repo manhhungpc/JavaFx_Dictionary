@@ -3,5 +3,5 @@ module JavaFxApplication {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens main.Application;
+    opens main.application;
 }
