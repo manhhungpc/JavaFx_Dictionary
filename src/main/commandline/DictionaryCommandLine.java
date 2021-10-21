@@ -56,10 +56,10 @@ public class DictionaryCommandLine {
     System.out.println("Enter your word: ");
     String line = scanner.nextLine();
 
-    for(int i = 0; i < dictionary.getWords().size(); i++)
+    for(int i = 0; i < Dictionary.getWords().size(); i++)
     {
-        if((dictionary.getWords().get(i).getWord_target()).indexOf(line) > -1) {
-            System.out.println(dictionary.getWords().get(i).getWord_target());
+        if((Dictionary.getWords().get(i).getWord_target()).indexOf(line) > -1) {
+            System.out.println(Dictionary.getWords().get(i).getWord_target());
             }
         }
     }
