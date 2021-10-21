@@ -1,9 +1,5 @@
 package main.application;
 
-import javafx.scene.control.ListView;
-import javafx.scene.web.WebView;
-import main.commandline.Word;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Map;
@@ -58,8 +54,6 @@ public class Data {
             System.out.println("Loi doc file: " + ex);
         }
     }
-
-
 
     public void addWord(String target, String explain) {
         mapWords.put(target, explain);

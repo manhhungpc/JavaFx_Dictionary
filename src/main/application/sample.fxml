@@ -11,15 +11,20 @@
    <children>
       <VBox prefHeight="400.0" prefWidth="174.0">
          <children>
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" text="Search" />
-            <TextField fx:id="inputSearchKey" promptText="enter searching word" />
-            <ListView fx:id="wordListView" prefHeight="350.0" prefWidth="177.0" />
+            <HBox>
+               <children>
+                  <Button fx:id="homeButton" mnemonicParsing="false" onAction="#goHomePage" text="Home" />
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" text="Search" />
+               </children>
+            </HBox>
+            <TextField fx:id="inputSearchKey" onAction="#setOnEnterPress" promptText="enter searching word" />
+            <ListView fx:id="wordListView" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox prefHeight="400.0" prefWidth="276.0">
+      <VBox prefHeight="400.0" prefWidth="276.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <WebView fx:id="resultField" prefHeight="402.0" prefWidth="276.0" />
+            <HBox prefHeight="103.0" prefWidth="276.0" VBox.vgrow="NEVER" />
+            <WebView fx:id="resultField" prefHeight="402.0" prefWidth="276.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>

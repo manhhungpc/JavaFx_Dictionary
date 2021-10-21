@@ -8,8 +8,10 @@ public class Search {
     private Map<String, String> mapSearchWords = new TreeMap<>();
     private Map<String, String> mapWords;
 
-    Search(Map<String, String> mapWords) {
+    Search(String keySearch, Map<String, String> mapWords) {
+        this.keySearch = keySearch;
         this.mapWords = mapWords;
+        setMapSearchWords();
     }
 
     public String getKey() {
