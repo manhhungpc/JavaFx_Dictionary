@@ -1,0 +1,25 @@
+cat	meo
+dog	cho
+cat and dog	meo va cho
+peswoc	dep trai
+phone	điện thoại
+smartphone	điện thoại thông minh
+keyboard	bàn phím
+mouse	chuột
+laptop	máy tính xách tay
+desk	cái bàn
+wood	gỗ
+fan	cái quạt
+boy	con trai
+girl	con gái
+no	không
+crazy	điên
+school	trường học
+hide and seek	trò chơi trốn tìm
+lamp	cái đèn
+game	trò chơi
+afternoon	buổi chiều
+evening	buổi tối
+class	lớp
+window	cửa sổ
+door	cửa ra vào
