@@ -84,4 +84,13 @@ public class Word {
         setPronounceProperty(pronounce);
         setPartsProperty(parts);
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "vietnamese=" + vietnamese +
+                ", pronounce=" + pronounce +
+                ", parts=" + parts +
+                '}';
+    }
 }

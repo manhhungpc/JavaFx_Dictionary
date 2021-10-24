@@ -22,11 +22,6 @@ import java.util.Objects;
 import static main.application.Structure.window;
 
 public class Controller {
-//    Data data;
-//
-//    Controller() {
-//        data = Structure.data;
-//    }
 
     @FXML
     public WebView resultField = new WebView();
@@ -73,7 +68,7 @@ public class Controller {
     //search for keySearch and set scene
     void setSceneSearch(String keySearch) throws IOException, SQLException {
         Search search = new Search(keySearch, Structure.mapWords);
-        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 450, 400);
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 650, 600);
         setWordListView(scene, search);
         window.setScene(scene);
     }
@@ -88,14 +83,23 @@ public class Controller {
         // load selected word
         wordListView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-//                    String explain = search.getMapSearchWords().get(newValue.trim());
+
+                    //newValue.trim(): selected word
+                    //Lấy các thuộc của từ được chọn ra String
                     Word word = search.getMapSearchWords().get(newValue.trim());
-                    String explain = word.getVietnameseWord();
-//                    resultField.getEngine().loadContent(explain, "text/html");
-//                    resultField.getEngine().load("src\\application\\resource\\WordView.html");
+                    String target = word.getEnglishWord();
+                    String explain1 = word.getVietnameseWord();
+                    String part = word.getPartsProperty();
+                    String pronounce = word.getPronounceProperty();
+
+                    //Truyền các thuộc tính trên vào html và in ra Webview (resultField)
                     WebEngine webEngine = resultField.getEngine();
-                    File f = new File("src\\main\\application\\resource\\WordView.html");
-                    webEngine.load(f.toURI().toString());
+                    String htmlContent = EditHtml.htmlToString("src\\main\\application\\resource\\WordView.html");
+                    webEngine.loadContent(htmlContent.
+                            replace("target", target).
+                            replace("explain1", explain1).
+                            replace("pronounce", pronounce).
+                            replace("part", part));
                 }
         );
     }

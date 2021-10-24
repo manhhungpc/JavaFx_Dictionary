@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<HBox prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.Controller">
+<HBox prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.Controller">
    <children>
       <VBox prefHeight="400.0" prefWidth="174.0">
          <children>
@@ -24,7 +24,7 @@
       <VBox prefHeight="400.0" prefWidth="276.0" HBox.hgrow="ALWAYS">
          <children>
             <HBox prefHeight="103.0" prefWidth="276.0" VBox.vgrow="NEVER" />
-            <WebView fx:id="resultField" prefHeight="402.0" prefWidth="276.0" VBox.vgrow="ALWAYS" />
+            <WebView fx:id="resultField" prefHeight="603.0" prefWidth="476.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>

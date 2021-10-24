@@ -28,8 +28,6 @@ public class Main extends Application {
 
         window = stage;
         window.setTitle("Stupid Dictionary");
-        scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 450, 400);
-        window.setScene(scene);
 
         //first, show full words => search with keySearch = "";
         controller.setSceneSearch("");
