@@ -13,12 +13,10 @@ import javafx.scene.web.WebView;
 import java.io.IOException;
 import java.util.*;
 
-import static main.application.Structure.window;
-import static main.application.Structure.scene;
+import static main.application.Structure.*;
 
 public class Main extends Application {
     Controller controller = new Controller();
-    Data data = new Data();
 
     public static void main(String[] args) {
         launch(args);
@@ -26,10 +24,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Structure.setMapWords();
+
         window = stage;
         window.setTitle("Stupid Dictionary");
-        scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 450, 400);
-        window.setScene(scene);
 
         //first, show full words => search with keySearch = "";
         controller.setSceneSearch("");

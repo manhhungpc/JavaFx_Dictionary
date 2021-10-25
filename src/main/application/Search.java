@@ -5,10 +5,10 @@ import java.util.TreeMap;
 
 public class Search {
     private String keySearch;
-    private Map<String, String> mapSearchWords = new TreeMap<>();
-    private Map<String, String> mapWords;
+    private Map<String, Word> mapSearchWords = new TreeMap<>();
+    private Map<String, Word> mapWords;
 
-    Search(String keySearch, Map<String, String> mapWords) {
+    Search(String keySearch, Map<String, Word> mapWords) {
         this.keySearch = keySearch;
         this.mapWords = mapWords;
         setMapSearchWords();
@@ -31,7 +31,7 @@ public class Search {
         }
     }
 
-    public Map<String, String> getMapSearchWords() {
+    public Map<String, Word> getMapSearchWords() {
         return mapSearchWords;
     }
 

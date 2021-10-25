@@ -26,38 +26,38 @@ public class ConnectionDatabase {
         }
     }
 
-    public List<Words> getWordList() throws SQLException {
+    public List<Word> getWordList() throws SQLException {
         try (
                 Statement state = connection.createStatement();
                 ResultSet res = state.executeQuery("SELECT * FROM words");
         ){
-            List<Words> wordsList = new ArrayList<>();
+            List<Word> wordsList = new ArrayList<>();
             while (res.next()) {
                 String id_w = res.getString("id_w");
                 String english = res.getString("english");
                 String vietnamese = res.getString("vietnamese");
                 String pronounce = res.getString("pronounce");
                 String parts = res.getString("parts");
-                Words word = new Words(english, vietnamese, pronounce, parts);
+                Word word = new Word(english, vietnamese, pronounce, parts);
                 wordsList.add(word);
             }
             return wordsList ;
         }
     }
 
-    public List<Words> getSearchWord(String word) throws SQLException {
+    public List<Word> getSearchWord(String word) throws SQLException {
         try (
                 Statement state = connection.createStatement();
                 ResultSet res = state.executeQuery("SELECT * FROM words WHERE english='" + word + "'");
         ){
-            List<Words> wordsList = new ArrayList<>();
+            List<Word> wordsList = new ArrayList<>();
             while (res.next()) {
                 String id_w = res.getString("id_w");
                 String english = res.getString("english");
                 String vietnamese = res.getString("vietnamese");
                 String pronounce = res.getString("pronounce");
                 String parts = res.getString("parts");
-                Words searched = new Words(english, vietnamese, pronounce, parts);
+                Word searched = new Word(english, vietnamese, pronounce, parts);
                 wordsList.add(searched);
             }
             return wordsList ;
@@ -104,14 +104,37 @@ public class ConnectionDatabase {
     }
 
     public static void main(String[] args) throws SQLException {
-        ConnectionDatabase cnt = new ConnectionDatabase();
-        cnt.insertWord("tals", "chuyen co tich", "taels", "noun");
-        cnt.updateWord("hi", "xin chao", "hai", "verb", 7);
-        for(int i=0; i<cnt.getWordList().size(); i++){
-            System.out.print(cnt.getWordList().get(i).getEnglishWord() + " ");
-            System.out.print(cnt.getWordList().get(i).getVietnameseWord() + " ");
-            System.out.print(cnt.getWordList().get(i).getPronounceProperty() + " ");
-            System.out.print(cnt.getWordList().get(i).getPartsProperty() + '\n');
+        ConnectionDatabase cd = new ConnectionDatabase();
+//        cnt.insertWord("tals", "chuyen co tich", "taels", "noun");
+//        cnt.updateWord("hi", "xin chao", "hai", "verb", 7);
+//        for(int i=0; i<cnt.getWordList().size(); i++){
+//            System.out.print(cnt.getWordList().get(i).getEnglishWord() + " ");
+//            System.out.print(cnt.getWordList().get(i).getVietnameseWord() + " ");
+//            System.out.print(cnt.getWordList().get(i).getPronounceProperty() + " ");
+//            System.out.print(cnt.getWordList().get(i).getPartsProperty() + '\n');
+//        }
+        Map<String, Word> mp = cd.getMapWord();
+        for (String i : mp.keySet()) {
+            System.out.println(i + " " + mp.get(i).getVietnameseWord());
+        }
+    }
+
+    public Map<String, Word> getMapWord() throws SQLException {
+        try (
+                Statement state = connection.createStatement();
+                ResultSet res = state.executeQuery("SELECT * FROM words");
+        ){
+            Map<String, Word> mapWords = new TreeMap<>();
+            while (res.next()) {
+                String id_w = res.getString("id_w");
+                String english = res.getString("english");
+                String vietnamese = res.getString("vietnamese");
+                String pronounce = res.getString("pronounce");
+                String parts = res.getString("parts");
+                Word word = new Word(english, vietnamese, pronounce, parts);
+                mapWords.put(english, word);
+            }
+            return mapWords;
         }
     }
 }

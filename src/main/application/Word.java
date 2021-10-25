@@ -3,7 +3,7 @@ package main.application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Words {
+public class Word {
     //info about id_word
     private final StringProperty id_w = new SimpleStringProperty(this, "id_w");
 
@@ -76,12 +76,21 @@ public class Words {
     }
 
     //Words constrctor
-    public Words() {};
+    public Word() {};
 
-    public Words(String english, String vietnamese, String pronounce, String parts){
+    public Word(String english, String vietnamese, String pronounce, String parts){
         setEnglishWord(english);
         setVietnameseWord(vietnamese);
         setPronounceProperty(pronounce);
         setPartsProperty(parts);
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "vietnamese=" + vietnamese +
+                ", pronounce=" + pronounce +
+                ", parts=" + parts +
+                '}';
     }
 }
