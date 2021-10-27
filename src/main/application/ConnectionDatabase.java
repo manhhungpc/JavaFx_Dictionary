@@ -29,16 +29,14 @@ public class ConnectionDatabase {
     public List<Word> getWordList() throws SQLException {
         try (
                 Statement state = connection.createStatement();
-                ResultSet res = state.executeQuery("SELECT * FROM words");
+                ResultSet res = state.executeQuery("SELECT * FROM list_words");
         ){
             List<Word> wordsList = new ArrayList<>();
             while (res.next()) {
-                String id_w = res.getString("id_w");
                 String english = res.getString("english");
-                String vietnamese = res.getString("vietnamese");
                 String pronounce = res.getString("pronounce");
-                String parts = res.getString("parts");
-                Word word = new Word(english, vietnamese, pronounce, parts);
+                String meanings = res.getString("meanings");
+                Word word = new Word(english, pronounce, meanings);
                 wordsList.add(word);
             }
             return wordsList ;
@@ -48,16 +46,14 @@ public class ConnectionDatabase {
     public List<Word> getSearchWord(String word) throws SQLException {
         try (
                 Statement state = connection.createStatement();
-                ResultSet res = state.executeQuery("SELECT * FROM words WHERE english='" + word + "'");
+                ResultSet res = state.executeQuery("SELECT * FROM list_words WHERE english LIKE '" + word + "%'");
         ){
             List<Word> wordsList = new ArrayList<>();
             while (res.next()) {
-                String id_w = res.getString("id_w");
                 String english = res.getString("english");
-                String vietnamese = res.getString("vietnamese");
                 String pronounce = res.getString("pronounce");
-                String parts = res.getString("parts");
-                Word searched = new Word(english, vietnamese, pronounce, parts);
+                String meanings = res.getString("meanings");
+                Word searched = new Word(english, pronounce, meanings);
                 wordsList.add(searched);
             }
             return wordsList ;
@@ -69,36 +65,33 @@ public class ConnectionDatabase {
      * https://stackoverflow.com/questions/19614544/sql-question-marks-in-insert-statement/19614558
      *
      */
-    public void insertWord(String english, String vietnamese, String pronounce, String parts)
+    public void insertWord(String english, String pronounce, String meanings)
         throws SQLException {
-        String query = "INSERT INTO words (english, vietnamese, pronounce, parts) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO list_words (english, pronounce, meanings) VALUES (?, ?, ?)";
         try (PreparedStatement pState = connection.prepareStatement(query)){
                 pState.setString(1, english);
-                pState.setString(2,vietnamese);
-                pState.setString(3,pronounce);
-                pState.setString(4,parts);
+                pState.setString(2,pronounce);
+                pState.setString(3,meanings);
                 pState.executeUpdate();
         }
     }
 
-    public void deleteWord(int id_w) throws SQLException {
-        String query = "DELETE FROM words WHERE id_w=?";
+    public void deleteWord(String english) throws SQLException {
+        String query = "DELETE FROM list_words WHERE english=?";
         try (PreparedStatement pState = connection.prepareStatement(query)){
-            pState.setInt(1, id_w);
+            pState.setString(1, english);
             pState.executeUpdate();
         }
     }
 
-    public void updateWord(String english, String vietnamese, String pronounce, String parts, int id_w)
+    public void updateWord(String english, String pronounce, String meanings)
         throws SQLException {
-        String query = "UPDATE words SET english=?, vietnamese=?, pronounce=?, parts=? " +
-                    "WHERE id_w=?";
+        String query = "UPDATE list_words SET english=?, pronounce=?, meanings=? " +
+                    "WHERE english=?";
         try (PreparedStatement pState = connection.prepareStatement(query)){
             pState.setString(1, english);
-            pState.setString(2, vietnamese);
-            pState.setString(3, pronounce);
-            pState.setString(4, parts);
-            pState.setInt(5, id_w);
+            pState.setString(2, pronounce);
+            pState.setString(3, meanings);
             pState.executeUpdate();
         }
     }
@@ -115,23 +108,22 @@ public class ConnectionDatabase {
 //        }
         Map<String, Word> mp = cd.getMapWord();
         for (String i : mp.keySet()) {
-            System.out.println(i + " " + mp.get(i).getVietnameseWord());
+            System.out.println(i + " " + mp.get(i).getMeanings());
         }
     }
 
     public Map<String, Word> getMapWord() throws SQLException {
         try (
                 Statement state = connection.createStatement();
-                ResultSet res = state.executeQuery("SELECT * FROM words");
+                //try print this one: SELECT * FROM list_words LIMIT 20
+                ResultSet res = state.executeQuery("SELECT * FROM list_words");
         ){
             Map<String, Word> mapWords = new TreeMap<>();
             while (res.next()) {
-                String id_w = res.getString("id_w");
                 String english = res.getString("english");
-                String vietnamese = res.getString("vietnamese");
                 String pronounce = res.getString("pronounce");
-                String parts = res.getString("parts");
-                Word word = new Word(english, vietnamese, pronounce, parts);
+                String meanings = res.getString("meanings");
+                Word word = new Word(english, pronounce, meanings);
                 mapWords.put(english, word);
             }
             return mapWords;

@@ -88,8 +88,7 @@ public class Controller {
                     //Lấy các thuộc của từ được chọn ra String
                     Word word = search.getMapSearchWords().get(newValue.trim());
                     String target = word.getEnglishWord();
-                    String explain1 = word.getVietnameseWord();
-                    String part = word.getPartsProperty();
+                    String meanings = word.getMeanings();
                     String pronounce = word.getPronounceProperty();
 
                     //Truyền các thuộc tính trên vào html và in ra Webview (resultField)
@@ -97,9 +96,8 @@ public class Controller {
                     String htmlContent = EditHtml.htmlToString("src\\main\\application\\resource\\WordView.html");
                     webEngine.loadContent(htmlContent.
                             replace("target", target).
-                            replace("explain1", explain1).
-                            replace("pronounce", pronounce).
-                            replace("part", part));
+                            replace("explain1", meanings).
+                            replace("pronounce", pronounce));
                 }
         );
     }

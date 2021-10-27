@@ -4,17 +4,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Word {
-    //info about id_word
-    private final StringProperty id_w = new SimpleStringProperty(this, "id_w");
-
-    public StringProperty idWord() {
-        return id_w ;
-    }
-
-    public final String getIdWord() {
-        return idWord().get();
-    }
-
     //info about english_word
     private final StringProperty english = new SimpleStringProperty(this, "english");
 
@@ -28,21 +17,6 @@ public class Word {
 
     public final void setEnglishWord(String english) {
         englishWord().set(english);
-    }
-
-    //info about vietnamese_word
-    private final StringProperty vietnamese = new SimpleStringProperty(this, "vietnamese");
-
-    public StringProperty vietnameseWord() {
-        return vietnamese ;
-    }
-
-    public final String getVietnameseWord() {
-        return vietnameseWord().get();
-    }
-
-    public final void setVietnameseWord(String vietnamese) {
-        vietnameseWord().set(vietnamese);
     }
 
     //info about pronounce_property
@@ -61,36 +35,34 @@ public class Word {
     }
 
     //info about parts_property
-    private final StringProperty parts = new SimpleStringProperty(this, "parts");
+    private final StringProperty meanings = new SimpleStringProperty(this, "meanings");
 
-    public StringProperty partsProperty() {
-        return parts ;
+    public StringProperty meanings() {
+        return meanings ;
     }
 
-    public final String getPartsProperty() {
-        return partsProperty().get();
+    public final String getMeanings() {
+        return meanings().get();
     }
 
-    public final void setPartsProperty(String parts) {
-        partsProperty().set(parts);
+    public final void setMeanings(String parts) {
+        meanings().set(parts);
     }
 
     //Words constrctor
     public Word() {};
 
-    public Word(String english, String vietnamese, String pronounce, String parts){
+    public Word(String english, String pronounce, String meanings){
         setEnglishWord(english);
-        setVietnameseWord(vietnamese);
         setPronounceProperty(pronounce);
-        setPartsProperty(parts);
+        setMeanings(meanings);
     }
 
     @Override
     public String toString() {
         return "Word{" +
-                "vietnamese=" + vietnamese +
                 ", pronounce=" + pronounce +
-                ", parts=" + parts +
+                ", parts=" + meanings +
                 '}';
     }
 }
