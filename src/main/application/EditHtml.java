@@ -5,10 +5,26 @@ import org.w3c.dom.Document;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class EditHtml {
     public static void main(String[] args) {
-        System.out.println(htmlToString("src\\main\\application\\resource\\WordView.html"));
+//        System.out.println(htmlToString("src\\main\\application\\resource\\WordView.html"));
+
+//        String s = "danh từ, số nhiều as, a's- (thông tục) loại a, hạng nhất, hạng tốt nhất hạng rất tốt=his health is a+ sức khoẻ anh ta vào loại a- (âm nhạc) la=a sharp+ la thăng=a flat+ la giáng- người giả định thứ nhất; trường hợp giả định thứ nhất=from a to z+ từ đầu đến đuôi, tường tận=not to know a from b+ không biết tí gì cả; một chữ bẻ đôi cũng không biết * mạo từ- một; một (như kiểu); một (nào đó)=a very cold day+ một ngày rất lạnh=a dozen+ một tá=a few+ một ít=all of a size+ tất cả cùng một cỡ=a Shakespeare+ một (văn hào như kiểu) Sếch-xpia=a Mr Nam+ một ông Nam (nào đó)- cái, con, chiếc, cuốn, người, đứa...;=a cup+ cái chén=a knife+ con dao=a son of the Party+ người con của Đảng=a Vietnamese grammar+ cuốn ngữ pháp Việt Nam * giới từ- mỗi, mỗi một=twice a week+ mỗi tuần hai lần";
+//        List<Part> parts = new ArrayList<>();
+//        splitMeaning(s,parts);
+
+//        List<EditHtml.Part> parts = new ArrayList<>();
+//        List<String> listMeaning = new ArrayList<>();
+//        listMeaning.add("meaning1");
+//        listMeaning.add("meaning2");
+//        parts.add(new EditHtml.Part("part1", listMeaning));
+//        parts.add(new EditHtml.Part("part2", listMeaning));
+
+//        System.out.println(getFinalMeaning(parts));
     }
 
     public static String htmlToString(String filePath) {
@@ -23,5 +39,85 @@ public class EditHtml {
         } catch (IOException ignored) {
         }
         return contentBuilder.toString();
+    }
+
+    public static class Part {
+        String part;
+        List<smallMeaning> smallMeanings = new ArrayList<>();
+
+        public Part(String part, List<smallMeaning> meanings) {
+            this.part = part;
+            this.smallMeanings = meanings;
+        }
+
+        public Part(String unSplitPart) {
+            String[] split = unSplitPart.split("-");
+            for (int i = 0; i < split.length; i++) {
+                if (i == 0) part = split[i];
+                else smallMeanings.add(new smallMeaning(split[i]));
+            }
+        }
+    }
+
+    public static class smallMeaning {
+        String meaning;
+        List<String> examples = new ArrayList<>();
+
+        public smallMeaning(String unSplitSmallMeaning) {
+            unSplitSmallMeaning = unSplitSmallMeaning.substring(1);
+            String[] split = unSplitSmallMeaning.split(Pattern.quote("="));
+            for (int i = 0; i < split.length; i++) {
+                if (i == 0) meaning = split[i];
+                else examples.add(split[i]);
+            }
+        }
+
+        public String htmlAddListExample() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("<ul>");
+            for (String i : examples) {
+                sb.append("<li>").append(i).append("</li>");
+            }
+            sb.append("</ul>");
+            return sb.toString();
+        }
+    }
+
+
+
+    public static String getPartMeaning(List<smallMeaning> smallMeanings) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<ul>");
+        for (smallMeaning sm : smallMeanings) {
+            sb.append("<li style=\"list-style-type: circle; font-size: 16px; line-height: 150%;\">").append(sm.meaning).append("</li>");
+            sb.append(sm.htmlAddListExample());
+        }
+        sb.append("</ul>");
+        return sb.toString();
+    }
+
+    public static String getPartName(String part) {
+        return "<li style=\"font-family: Cambria; color: #3F025D; font-size: 17px; line-height: 150%;\"><i>" + part + "</i></li>";
+    }
+
+    public static String getFinalMeaning(List<Part> parts) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<ul>");
+        sb.append("<div class=\"b\">");
+        for (Part partI : parts) {
+            sb.append(getPartName(partI.part));
+            sb.append(getPartMeaning(partI.smallMeanings));
+        }
+        sb.append("</ul>");
+        sb.append("</div>");
+        return sb.toString();
+    }
+
+    public static void splitMeaning(String unSplitMeaning, List<Part> parts) {
+        unSplitMeaning = unSplitMeaning.substring(1);
+        String[] split = unSplitMeaning.split(Pattern.quote("*"));
+        for (String s : split) {
+            parts.add(new Part(s));
+        }
     }
 }

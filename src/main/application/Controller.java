@@ -17,8 +17,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import static main.application.EditHtml.splitMeaning;
 import static main.application.Structure.window;
 
 public class Controller {
@@ -91,16 +94,24 @@ public class Controller {
                     String meanings = word.getMeanings();
                     String pronounce = word.getPronounceProperty();
 
-                    //Truyền các thuộc tính trên vào html và in ra Webview (resultField)
+                    //Load html dưới dạng String ra resultField để tiện chỉnh sửa
                     WebEngine webEngine = resultField.getEngine();
                     String htmlContent = EditHtml.htmlToString("src\\main\\application\\resource\\WordView.html");
+
+                    //Tách String meanings ra List parts để tiện in
+                    List<EditHtml.Part> parts = new ArrayList<>();
+                    splitMeaning(meanings.replace('+', ':'),parts);
+
+                    //Truyền các thuộc tính vào html
                     webEngine.loadContent(htmlContent.
                             replace("target", target).
-                            replace("explain1", meanings).
+                            replace("meanings", EditHtml.getFinalMeaning(parts)).
                             replace("pronounce", pronounce));
                 }
         );
     }
+
+
 
     public void setWordListView(Scene scene, Search search) {
         selectWord(scene, search);
