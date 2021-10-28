@@ -22,7 +22,7 @@ import java.util.*;
 import static main.application.Structure.*;
 
 public class Main extends Application {
-    Controller controller = new Controller();
+    Controller controller = Structure.controller;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,10 +30,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //set map words from database
         Structure.setMapWords();
 
         window = stage;
-        window.setTitle("Stupid Dictionary");
+//        window.setTitle("Stupid Dictionary");
 
         //set window icon
         window.getIcons().add(window_icon);

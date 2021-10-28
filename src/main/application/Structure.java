@@ -1,6 +1,7 @@
 package main.application;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -13,16 +14,12 @@ public class Structure {
     public static Stage window = new Stage();
     public static Data data;
     public static Map<String, Word> mapWords;
-    public static Image search_icon;
     public static Image window_icon;
-
-    static {
-        try {
-            search_icon = new Image(new FileInputStream(".\\src\\main\\application\\resource\\search_icon.png"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    public static String speakWord = "NoWord";
+    public static String deleteWord = "NoWord";
+    public static Word editWord = new Word("NoWord", "", "");
+    public static Controller controller = new Controller();
+    public static EditWordController editWordController = new EditWordController();
 
     static {
         try {
@@ -35,5 +32,13 @@ public class Structure {
     public static void setMapWords() throws SQLException {
         data = new Data();
         mapWords = data.getMapWordsFromDataBase();
+    }
+
+    public static void callAlert(String title, String header) {
+        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+        alert1.setTitle(title);
+        alert1.setHeaderText(header);
+//        alert1.setContentText(content);
+        alert1.show();
     }
 }

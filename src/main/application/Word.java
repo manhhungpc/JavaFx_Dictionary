@@ -3,6 +3,8 @@ package main.application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class Word {
     //info about english_word
     private final StringProperty english = new SimpleStringProperty(this, "english");
@@ -64,5 +66,11 @@ public class Word {
                 ", pronounce=" + pronounce +
                 ", parts=" + meanings +
                 '}';
+    }
+
+    public boolean isEmpty() {
+        return (!(Objects.equals(getEnglishWord(), "")
+                || Objects.equals(getMeanings(), "")
+                || Objects.equals(getPronounceProperty(), "")));
     }
 }

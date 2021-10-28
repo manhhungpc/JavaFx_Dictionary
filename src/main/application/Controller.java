@@ -4,10 +4,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -23,21 +21,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static main.application.EditHtml.splitMeaning;
-import static main.application.Structure.search_icon;
-import static main.application.Structure.window;
+import static main.application.Structure.*;
 
 public class Controller {
 
     @FXML
     public WebView resultField = new WebView();
-
-    @FXML
     public ListView<String> wordListView = new ListView<>();
-
-    @FXML
     public TextField inputSearchKey = new TextField();
+    public Button searchButton = new Button();
+    public Button homeButton = new Button();
+    public Button speakButton;
+    public Button addButton;
+    public Button editButton;
+    public Button deleteButton;
 
     @FXML
     //Press Enter can use as Search button
@@ -57,23 +57,66 @@ public class Controller {
     }
 
     @FXML
-    public Button searchButton = new Button();
-
-    @FXML
     public void search() throws IOException, SQLException {
         setSceneSearch(inputSearchKey.getText());
     }
-
-    @FXML
-    public Button homeButton = new Button();
 
     @FXML
     void goHomePage() throws IOException, SQLException {
         setSceneSearch("");
     }
 
+    @FXML
+    public void setSpeakButton() {
+        if (Objects.equals(speakWord, "NoWord")) {
+            callAlert("Error", "No word is selected");
+            return;
+        }
+        TextToSpeech textToSpeech = new TextToSpeech(Structure.speakWord);
+    }
+
+    @FXML
+    public void setAddButton() {
+        Add.addWord();
+    }
+
+    @FXML
+    public void setDeleteButton() throws SQLException, IOException {
+
+        //Nếu chưa chọn từ nào thì tạo ra Alert
+        if (Objects.equals(deleteWord, "NoWord")) {
+            callAlert("Error", "No word is selected");
+            return;
+        }
+
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "", yes, no);
+        alert.setHeaderText("Do you sure want to delete this word?");
+        alert.setTitle("Confirmation");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.orElse(no) == yes) {
+            Structure.data.cd.deleteWord(Structure.deleteWord);
+            mapWords.remove(deleteWord);
+            setSceneSearch("");
+        }
+    }
+
+    @FXML
+    public void setEditButton() throws IOException {
+        editWordController.edit();
+//        WebEngine webEngine = editWordController.webView.getEngine();
+//        File f = new File(".\\src\\main\\application\\resource\\edit.png");
+//        webEngine.load(f.toURI().toString());
+    }
+
     //search for keySearch and set scene
     void setSceneSearch(String keySearch) throws IOException, SQLException {
+        window.setTitle("Stupid Dictionary");
+        speakWord = "NoWord";
+        deleteWord = "NoWord";
+        editWord = new Word("NoWord", "", "");
         Search search = new Search(keySearch, Structure.mapWords);
         Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 650, 600);
         setWordListView(scene, search);
@@ -111,6 +154,10 @@ public class Controller {
                             replace("target", target).
                             replace("meanings", EditHtml.getFinalMeaning(parts)).
                             replace("pronounce", pronounce));
+
+                    speakWord = target;
+                    deleteWord = target;
+                    editWord = word;
                 }
         );
     }
