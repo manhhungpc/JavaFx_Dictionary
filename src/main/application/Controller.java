@@ -8,12 +8,15 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static main.application.EditHtml.splitMeaning;
+import static main.application.Structure.search_icon;
 import static main.application.Structure.window;
 
 public class Controller {
