@@ -7,9 +7,9 @@ public class ConnectionDatabase {
     private Connection connection;
 
     public ConnectionDatabase() {
-        final String DB_URL = "jdbc:mysql://sql6445863:1eFfPQTeIA@sql6.freesqldatabase.com:3306/sql6445863";
-        final String USER_NAME = "sql6445863";
-        final String PASSWORD = "1eFfPQTeIA";
+        final String DB_URL = "jdbc:mysql://sql6447574:FWykaM649T@sql6.freesqldatabase.com:3306/sql6447574";
+        final String USER_NAME = "sql6447574";
+        final String PASSWORD = "FWykaM649T";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -116,7 +116,7 @@ public class ConnectionDatabase {
         try (
                 Statement state = connection.createStatement();
                 //try print this one: SELECT * FROM list_words LIMIT 20
-                ResultSet res = state.executeQuery("SELECT * FROM list_words");
+                ResultSet res = state.executeQuery("SELECT * FROM list_words LIMIT 30");
         ){
             Map<String, Word> mapWords = new TreeMap<>();
             while (res.next()) {

@@ -5,24 +5,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Data {
-//    private Map<String, Word> words = new TreeMap<>();
-//    private String currentSelectedWord;
-//    private static Data instance = null;
-//
-//    public static Data getInstance() {
-//        if (instance == null) {
-//            instance = new Data();
-//        }
-//        return instance;
-//    }
-//
-//    public String getCurrentSelectedWord() {
-//        return currentSelectedWord;
-//    }
-//
-//    public void setCurrentSelectedWord(String currentSelectedWord) {
-//        this.currentSelectedWord = currentSelectedWord;
-//    }
     ConnectionDatabase cd = new ConnectionDatabase();
     private Map<String, Word> mapWords;
 

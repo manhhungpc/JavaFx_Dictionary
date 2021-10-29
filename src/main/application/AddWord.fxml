@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="650.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.AddWordController">
+   <children>
+      <TextField fx:id="targetField" layoutX="233.0" layoutY="124.0" promptText="e.g. cat" style="-fx-font-size: 16;" />
+      <TextArea fx:id="meaningsField" layoutX="233.0" layoutY="281.0" prefHeight="200.0" prefWidth="368.0" style="-fx-font-size: 16;" text="* part1&#10;&#9;- meaning1&#10;&#9;&#9;= example1" />
+      <TextField fx:id="pronounceField" layoutX="233.0" layoutY="202.0" promptText="e.g. /kæt/" style="-fx-font-size: 16;" />
+      <Text layoutX="197.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New  Word">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="233.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="233.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meanings:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="233.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pronounce:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="addButton" alignment="CENTER" layoutX="452.0" layoutY="528.0" mnemonicParsing="false" onAction="#setAddButton" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #178C61;" text="Add &gt;" textAlignment="CENTER" textFill="#fcfcfc">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="cancelButton" layoutX="325.0" layoutY="528.0" mnemonicParsing="false" onAction="#setCancelButton" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #49454B;" text="&lt; Cancel" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font></Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resource/add_image.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
