@@ -34,11 +34,11 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="addButton" alignment="CENTER" layoutX="452.0" layoutY="528.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #178C61;" text="Add &gt;" textAlignment="CENTER" textFill="#fcfcfc">
+      <Button fx:id="addButton" alignment="CENTER" layoutX="452.0" layoutY="528.0" mnemonicParsing="false" onAction="#setAddButton" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #178C61;" text="Add &gt;" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="cancelButton" layoutX="325.0" layoutY="528.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #49454B;" text="&lt; Cancel" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="cancelButton" layoutX="325.0" layoutY="528.0" mnemonicParsing="false" onAction="#setCancelButton" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #49454B;" text="&lt; Cancel" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font></Button>

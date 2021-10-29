@@ -3,6 +3,7 @@ package main.application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
@@ -10,6 +11,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -38,6 +44,8 @@ public class Controller {
     public Button addButton;
     public Button editButton;
     public Button deleteButton;
+    public StackPane stackPane = new StackPane();
+    public ImageView background;
 
     @FXML
     //Press Enter can use as Search button
@@ -76,8 +84,9 @@ public class Controller {
     }
 
     @FXML
-    public void setAddButton() {
-        Add.addWord();
+    public void setAddButton() throws IOException {
+//        Add.addWord();
+        addWordController.add();
     }
 
     @FXML
@@ -106,6 +115,9 @@ public class Controller {
     @FXML
     public void setEditButton() throws IOException {
         editWordController.edit();
+
+
+
 //        WebEngine webEngine = editWordController.webView.getEngine();
 //        File f = new File(".\\src\\main\\application\\resource\\edit.png");
 //        webEngine.load(f.toURI().toString());
@@ -113,16 +125,17 @@ public class Controller {
 
     //search for keySearch and set scene
     void setSceneSearch(String keySearch) throws IOException, SQLException {
-        //set default
+        //set default Structure
         setDefault();
-//        window.setTitle("Stupid Dictionary");
-//        speakWord = "NoWord";
-//        deleteWord = "NoWord";
-//        editWord = new Word("NoWord", "", "");
 
         Search search = new Search(keySearch, Structure.mapWords);
-        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 650, 600);
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml"))), 650, 600);
         setWordListView(scene, search);
+
+//        //set background stack Pane
+//        stackPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+//        System.out.println("done");
+
         window.setScene(scene);
     }
 

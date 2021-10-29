@@ -19,6 +19,7 @@ public class Structure {
     public static String deleteWord = "NoWord";
     public static Word editWord = new Word("NoWord", "", "");
     public static Controller controller = new Controller();
+    public static AddWordController addWordController= new AddWordController();
     public static EditWordController editWordController = new EditWordController();
 
     static {
@@ -41,7 +42,7 @@ public class Structure {
 //        alert1.setContentText(content);
         alert1.show();
     }
-    
+
     public static void setDefault() {
         window.setTitle("Stupid Dictionary");
         speakWord = "NoWord";

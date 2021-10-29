@@ -7,9 +7,9 @@ public class ConnectionDatabase {
     private Connection connection;
 
     public ConnectionDatabase() {
-        final String DB_URL = "jdbc:mysql://sql6447425:JTYB1kCLF4@sql6.freesqldatabase.com:3306/sql6447425";
-        final String USER_NAME = "sql6447425";
-        final String PASSWORD = "JTYB1kCLF4";
+        final String DB_URL = "jdbc:mysql://sql6447574:FWykaM649T@sql6.freesqldatabase.com:3306/sql6447574";
+        final String USER_NAME = "sql6447574";
+        final String PASSWORD = "FWykaM649T";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

@@ -1,10 +1,13 @@
 package main.application;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Optional;
 
 import static main.application.Structure.*;
@@ -67,12 +70,17 @@ public class AddWordController {
         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert alert = new Alert(Alert.AlertType.WARNING, "", yes, no);
-        alert.setHeaderText("Do you sure want to delete this word?");
+        alert.setHeaderText("Do you sure want to cancel adding word?");
         alert.setTitle("Confirmation");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.orElse(no) == yes) {
             controller.setSceneSearch("");
         }
+    }
+
+    public void add() throws IOException {
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddWord.fxml"))), 650, 600);
+        window.setScene(scene);
     }
 }
