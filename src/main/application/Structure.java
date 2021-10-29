@@ -41,4 +41,11 @@ public class Structure {
 //        alert1.setContentText(content);
         alert1.show();
     }
+    
+    public static void setDefault() {
+        window.setTitle("Stupid Dictionary");
+        speakWord = "NoWord";
+        deleteWord = "NoWord";
+        editWord = new Word("NoWord", "", "");
+    }
 }

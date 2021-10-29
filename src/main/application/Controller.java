@@ -113,10 +113,13 @@ public class Controller {
 
     //search for keySearch and set scene
     void setSceneSearch(String keySearch) throws IOException, SQLException {
-        window.setTitle("Stupid Dictionary");
-        speakWord = "NoWord";
-        deleteWord = "NoWord";
-        editWord = new Word("NoWord", "", "");
+        //set default
+        setDefault();
+//        window.setTitle("Stupid Dictionary");
+//        speakWord = "NoWord";
+//        deleteWord = "NoWord";
+//        editWord = new Word("NoWord", "", "");
+
         Search search = new Search(keySearch, Structure.mapWords);
         Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml"))), 650, 600);
         setWordListView(scene, search);
