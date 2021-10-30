@@ -11,10 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -46,6 +43,8 @@ public class Controller {
     public Button deleteButton;
     public StackPane stackPane = new StackPane();
     public ImageView background;
+    public AnchorPane anchorPane1;
+    public HBox hBox1;
 
     @FXML
     //Press Enter can use as Search button
@@ -132,9 +131,18 @@ public class Controller {
         Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml"))), 650, 600);
         setWordListView(scene, search);
 
-//        //set background stack Pane
-//        stackPane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-//        System.out.println("done");
+        if (Objects.equals(keySearch, "")) {
+            URL url = this.getClass().getResource("resource/emptyWord.html");
+            WebEngine webEngine = resultField.getEngine();
+            webEngine.load(Objects.requireNonNull(url).toString());
+        }
+
+        //k co tu nao
+        if(search.getMapSearchWords().isEmpty()) {
+            URL url = this.getClass().getResource("resource/notFound.html");
+            WebEngine webEngine = resultField.getEngine();
+            webEngine.load(Objects.requireNonNull(url).toString());
+        }
 
         window.setScene(scene);
     }
@@ -177,8 +185,6 @@ public class Controller {
                 }
         );
     }
-
-
 
     public void setWordListView(Scene scene, Search search) {
         selectWord(scene, search);
