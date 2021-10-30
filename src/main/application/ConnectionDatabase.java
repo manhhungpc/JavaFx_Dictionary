@@ -116,7 +116,7 @@ public class ConnectionDatabase {
         try (
                 Statement state = connection.createStatement();
                 //try print this one: SELECT * FROM list_words LIMIT 20
-                ResultSet res = state.executeQuery("SELECT * FROM list_words LIMIT 30");
+                ResultSet res = state.executeQuery("SELECT * FROM list_words");
         ){
             Map<String, Word> mapWords = new TreeMap<>();
             while (res.next()) {

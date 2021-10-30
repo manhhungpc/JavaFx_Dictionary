@@ -84,7 +84,7 @@ public class EditHtml {
     }
 
     public static String getPartName(String part) {
-        return "<li style=\"font-family: Cambria; color: #3F025D; font-size: 17px; line-height: 150%;\"><i>" + part + "</i></li>";
+        return "<li style=\"font-family: Cambria; color: black; font-size: 17px; line-height: 150%;\"><i>" + part + "</i></li>";
     }
 
     public static String getFinalMeaning(List<Part> parts) {
